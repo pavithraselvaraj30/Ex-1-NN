@@ -1,7 +1,7 @@
-<H3>ENTER YOUR NAME</H3>
-<H3>ENTER YOUR REGISTER NO.</H3>
+<H3>ENTER YOUR NAME:PAVITHRA S</H3>
+<H3>ENTER YOUR REGISTER NO.212223230147</H3>
 <H3>EX. NO.1</H3>
-<H3>DATE</H3>
+<H3>DATE:08.3.25</H3>
 <H1 ALIGN =CENTER> Introduction to Kaggle and Data preprocessing</H1>
 
 ## AIM:
@@ -37,11 +37,48 @@ STEP 5:Normalizing the data<BR>
 STEP 6:Splitting the data into test and train<BR>
 
 ##  PROGRAM:
-TYPE YOUR CODE HERE
+```
+import pandas as pd                                                 # Importing Libraries
+import io
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
+df=pd.read_csv("Churn_Modelling.csv",index_col="RowNumber")         # Read the dataset from drive
+df.head()
+```
+```
+df.isnull().sum()                                                   # Finding Missing Values
+```
+```
+df.duplicated().sum()                                               # Check For Duplicates
+```
+```
+df=df.drop(['Surname', 'Geography','Gender'], axis=1)               # Remove Unnecessary Columns
+scaler=StandardScaler()                                             # Normalize the dataset
+df=pd.DataFrame(scaler.fit_transform(df))
+df.head()
+```
+```
+X,Y=df.iloc[:,:-1].values ,df.iloc[:,-1].values                     # Split the dataset into input and output
+print('Input:\n',X,'\nOutput:\n',Y) 
+Xtrain,Xtest,Ytrain,Ytest = train_test_split(X, Y, test_size=0.2)   # Splitting the data for training & Testing
+print("Xtrain:\n" ,Xtrain, "\nXtest:\n", Xtest)                     # X Train and Test
+print("\nYtrain:\n" ,Ytrain, "\nYtest:\n", Ytest)                   # Y Train and Test
+```
 
 
 ## OUTPUT:
-SHOW YOUR OUTPUT HERE
+## DATASET:
+![Screenshot 2025-03-08 114044](https://github.com/user-attachments/assets/550dc5b7-3f0e-4b9e-95c2-5c22c41758ab)
+
+![Screenshot 2025-03-08 114052](https://github.com/user-attachments/assets/b55e3e9a-6cce-4dd4-9801-7c95a22ffe1c)
+
+![Screenshot 2025-03-08 114102](https://github.com/user-attachments/assets/1932d9fd-c769-460d-8a30-f14ffd429351)
+
+![Screenshot 2025-03-08 114125](https://github.com/user-attachments/assets/70a51893-3fe6-40dd-9e65-e13a2a8797a1)
+
+![Screenshot 2025-03-08 114138](https://github.com/user-attachments/assets/3910cd64-b7c3-4b3a-b3c5-7c76e8330744)
+
 
 
 ## RESULT:
